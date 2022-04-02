@@ -38,6 +38,7 @@ while True:
 
         posicao_filtro = filas_imagem // 3
 
+        # condição para que a imagem do filtro não desapareça se "faltar tela".
         if y - filas_imagem + posicao_filtro >= 0:
             n_frame = frame[y - filas_imagem + posicao_filtro: y + posicao_filtro, x: x + w] 
         else:
@@ -47,6 +48,7 @@ while True:
         mask = redimensionando_imagem[:, :, 3]
         mask_inv = cv2.bitwise_not(mask)
 
+        # Tratando a imagem do filtro para que fique com o fundo "transparente".
         bg_black = cv2.bitwise_and(redimensionando_imagem, redimensionando_imagem, mask=mask)
         bg_black = bg_black[dif:, :, 0:3]
         bg_frame = cv2.bitwise_and(n_frame, n_frame, mask=mask_inv[dif:, :])
@@ -67,4 +69,11 @@ while True:
 
 cv2.destroyAllWindows()
 vs.stop()
+
+'''Trabalho da disciplina "FUNDAMENTOS DE REALIDADE VIRTUAL E AUMENTADA"
+
+Nome: Willian de Oliveira Damas  RA: D92672-1
+Nome: Matheus Aparecido Luccas   RA: N39948-1
+
+'''
 
